@@ -1,0 +1,8 @@
+﻿.venv/
+__pycache__/
+logs/
+cache/
+indexes/
+rag_system.db
+Book1.csv
+data/*.csv
