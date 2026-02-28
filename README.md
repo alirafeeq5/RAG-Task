@@ -36,6 +36,7 @@ pandas>=1.5.0                  # data processing
 numpy>=1.24.0                  # numerics
 scikit-learn>=1.2.0            # TF-IDF, metrics
 python-dotenv>=1.0.0           # env vars
+gradio>=4.0.0                  # web UI & shareable link
 
 # All available with offline fallbacks (sklearn TF-IDF + NumPy)
 ```
@@ -63,6 +64,44 @@ uvicorn.run(app, host='0.0.0.0', port=8000)
 # Run tests
 python tests/test_rag.py
 ```
+
+## Share via Link (Gradio Web UI)
+
+The easiest way to share this system with others is the built-in **Gradio web interface**.
+It generates a public `https://xxxxxx.gradio.live` link that you can send to anyone—no server setup required on their end.
+
+```bash
+# Install Gradio (one-time)
+pip install gradio
+
+# Launch the UI – a public shareable link is printed automatically
+python gradio_app.py --csv data/Book1.csv --rows 200
+
+# Local-only (no public link)
+python gradio_app.py --csv data/Book1.csv --rows 200 --no-share
+
+# Larger dataset / different port
+python gradio_app.py --csv data/Book1.csv --rows 1000 --port 7861
+```
+
+After launch you will see something like:
+
+```
+🔗  A public link will be printed below — share it with anyone!
+
+Running on public URL: https://a1b2c3d4e5f6.gradio.live
+```
+
+Copy that URL and share it. The link stays active for **72 hours**.
+
+### Gradio UI Features
+| Feature | Description |
+|---------|-------------|
+| Chat interface | Multi-turn conversation with history |
+| Query expansion | Automatically expands your question |
+| Re-ranking | BM25 + dense hybrid re-ranking |
+| Multi-turn toggle | Enable/disable conversation memory |
+| Confidence & latency | Shown below every answer |
 
 ## API Endpoints
 | Method | Path | Description |
